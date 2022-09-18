@@ -1,0 +1,95 @@
+:root {
+
+    /* dark mode colors*/
+    --dm-header-background-color: #1E5F74;
+    --dm-main-background-color: #1D2D50;
+    --dm-modal-background-color: #133B5C;
+    --dm-text-color: #FCDAB7;
+    
+    /* default colors */ 
+    --header-background-color: var(--dm-header-background-color);
+    --main-background-color: var(--dm-main-background-color);
+    --modal-background-color: var(--dm-modal-background-color);
+    --text-color: var(--dm-text-color);
+
+    /* font size */
+    --font-size: calc(0.625rem + 0.5vw);
+    font-size: var(--font-size);
+
+}
+
+*, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.3fr 6fr 0.7fr;
+    min-height: 100vh;
+}
+
+/* header */
+header {
+    background: var(--header-background-color);
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+}
+
+#header-text {
+    font-size: calc(var(--font-size) * 2);
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.btn-body {
+    width: 8rem;
+    height: 2rem;
+    border-radius: 10px;
+    background-color: var(--modal-background-color);
+    color: var(--text-color);
+}
+
+.btn-body:hover {
+    transform: translateY(-3px);
+    background-color: var(--text-color);
+    color: var(--main-background-color);
+}
+
+.btn-body:active {
+    transform: translateY(0px);
+}
+
+/* main */
+main {
+    background-color: var(--main-background-color);
+}
+
+/* footer */
+footer {
+    background-color: var(--header-background-color);
+    color: var(--text-color);
+}
+
+#githubImage {
+    height: 28px;
+    width: 28px;
+    border-radius: 25px;
+    margin: auto 8px;
+}
+
+#githubImage:hover {
+    animation: rotate-animation 0.5s ease-out;
+}
+
+@keyframes rotate-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
