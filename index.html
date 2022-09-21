@@ -8,32 +8,43 @@
     <title>My Library</title>
     <link rel="stylesheet" href="./styles.css">
     <script src="./script.js" defer></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
 
     <header class="header">
         <h1 id="header-text">My library</h1>
-        <button type="button" class="btn-body" 
-        id="btn-login">Log in</button>
+        <button type="button" class="btn-body" id="btn-login">Log in</button>
     </header>
     <main class="main">
         <div>
-            <button type="button" class="btn-body"
-            id="btn-add-book">Add book</button>
+            <button type="button" class="btn-body" id="btn-add-book">Add book</button>
         </div>
         <div class="book-container" id="book-container">
-            <div class="modal">
-                <p class="modal-text" id="book"></p>
-                <p class="modal-text" id="author"></p>
-                <p class="modal-text" id="pages"></p>
-                <div class="btn-modal-group">
-                    <button type="button" class="btn-modal"
-                    id="btn-isRead">Read</button>
-                    <button type="button" class="btn-modal"
-                    id="btn-delete">Delete</button>
-                </div>              
-            </div>
+        </div>
+        <div class="modal">
+            <form class="modal-form">
+                <div class="modal-form-header">
+                    <h3 id="modal-form-title">Add new book</h3>
+                    <button type="button" class="modal-close-btn">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                    </button>
+
+                </div>
+
+                <input type="text" class="modal-input" id="title" placeholder="Title" required maxlength="100">
+                <input type="text" class="modal-input" id="author" placeholder="Author" required maxlength="100">
+                <input type="number" class="modal-input" id="pages" placeholder="Page number" required max="10000">
+                <div class="is-read">
+                    <label for="isRead">Have you read it?</label>
+                    <input type="checkbox" class="checkbox" id="isRead">
+                </div>
+                <button type="submit" class="book-card-btn btn-submit">Submit</button>
+            </form>
         </div>
     </main>
     <footer class="footer">
@@ -45,3 +56,19 @@
 </body>
 
 </html>
+
+<!-- book card model -->
+
+<!--
+<div class="book-card">
+    <p class="book-card-text" id="book"></p>
+    <p class="book-card-text" id="author"></p>
+    <p class="book-card-text" id="pages"></p>
+    <div class="book-card-btn-group">
+        <button type="button" class="book-card-btn"
+        id="btn-isRead">Read</button>
+        <button type="button" class="book-card-btn"
+        id="btn-delete">Delete</button>
+    </div>              
+</div>
+-->
