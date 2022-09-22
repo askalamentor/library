@@ -29,6 +29,7 @@ submitBtn.addEventListener("click", () => {
     createBookCardBtns(bookCard,bookCardBtn,isReadBtn,deleteBtn);
     closeModal(); 
     addBookToLibrary();
+    clearInputArea();
 
 });
 
@@ -143,6 +144,15 @@ function createBookCardBtns(bookCard,bookCardBtn,isReadBtn,deleteBtn) {
 
 }
 
+function clearInputArea() {
+
+    document.querySelector("#title").value = "";
+    document.querySelector("#author").value = "";
+    document.querySelector("#pages").value = "";
+    document.querySelector("#isRead").checked = false;
+
+}
+
 function deleteBookCard(index) {
         
     // remove from array
@@ -156,7 +166,7 @@ function deleteBookCard(index) {
 function changeReadCondition(index, e) {
 
     if (!e) e = window.event;
-    
+
     if (myLibrary[index].isRead) {
         //change array property
         myLibrary[index].isRead = false;
