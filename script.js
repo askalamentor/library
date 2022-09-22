@@ -30,8 +30,6 @@ submitBtn.addEventListener("click", () => {
     closeModal(); 
     addBookToLibrary();
 
-    console.log(bookContainer.childNodes);
-
 });
 
 window.addEventListener("click", (e) => {
@@ -128,8 +126,12 @@ function createBookCardBtns(bookCard,bookCardBtn,isReadBtn,deleteBtn) {
 
 function deleteBookCard(index) {
         
+    // remove from array
     myLibrary.splice(index,1);
-        
+
+    // remove from DOM
+    bookContainer.removeChild(bookContainer.children[index]);
+     
 }
 
 // constructor function
