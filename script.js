@@ -32,9 +32,10 @@ submitBtn.addEventListener("click", () => {
 
 });
 
+// delete book card
 window.addEventListener("click", (e) => {
 
-    // Find delete button's card index.
+    // find delete button's card index.
     if (e.target.className.includes("btn-delete")) {
 
         // child is book card
@@ -48,6 +49,24 @@ window.addEventListener("click", (e) => {
         console.log(myLibrary);
     }
 
+})
+
+// change book card read condition
+window.addEventListener("click", (e) => {
+
+    // find read button's card index
+    if (e.target.className.includes("btn-isRead")) {
+
+        // child is book card
+        const child = e.target.parentElement.parentElement;
+        // parent is book container
+        const parent = child.parentElement;
+
+        let index = Array.prototype.indexOf.call(parent.children, child);
+
+        changeReadCondition(index, e);
+        console.log(myLibrary);
+    }
 })
 
 // functions
@@ -132,6 +151,28 @@ function deleteBookCard(index) {
     // remove from DOM
     bookContainer.removeChild(bookContainer.children[index]);
      
+}
+
+function changeReadCondition(index, e) {
+
+    if (!e) e = window.event;
+    
+    if (myLibrary[index].isRead) {
+        //change array property
+        myLibrary[index].isRead = false;
+
+        // change DOM layout
+        e.target.style.backgroundColor = "rgb(158, 13, 13)";
+        e.target.innerHTML = "Not read"
+    } else {
+        // change array property
+        myLibrary[index].isRead = true;
+
+        // change DOM layout
+        e.target.style.backgroundColor = "rgb(0, 128, 0)";
+        e.target.innerHTML = "Read"
+    }
+    
 }
 
 // constructor function
