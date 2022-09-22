@@ -124,28 +124,28 @@ main {
 }
 
 /* read control button*/
-#btn-isRead {
+.btn-isRead {
     background-color: var(--green);
 }
 
-#btn-isRead:hover {
+.btn-isRead:hover {
     transform: translateY(-3px);
 }
 
-#btn-isRead:active {
+.btn-isRead:active {
     transform: translateY(0px);
 }
 
 /* delete button */
-#btn-delete {
+.btn-delete {
     background-color: var(--red);
 }
 
-#btn-delete:hover {
+.btn-delete:hover {
     transform: translateY(-3px);
 }
 
-#btn-delete:active {
+.btn-delete:active {
     transform: translateY(0px);
 }
 
