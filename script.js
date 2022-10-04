@@ -15,19 +15,12 @@ closeModalBtn.addEventListener("click", closeModal);
 // create book card
 submitBtn.addEventListener("click", () => {
 
-    // create card elements
-    const bookCard = document.createElement("div");
-    const bookTitle = document.createElement("p");
-    const bookAuthor = document.createElement("p");
-    const bookPages = document.createElement("p");
-    const bookCardBtn = document.createElement("div");
-    const isReadBtn = document.createElement("button");
-    const deleteBtn = document.createElement("button");
+    let bookCard = new BookCard();
+    bookCard.createBookCard();
+    bookCard.createBookInfo();
+    bookCard.createBookCardBtns();
 
-    createBookCard(bookCard);
-    createBookInfo(bookCard, bookTitle, bookAuthor, bookPages);
-    createBookCardBtns(bookCard,bookCardBtn,isReadBtn,deleteBtn);
-    closeModal(); 
+    closeModal();
     addBookToLibrary();
     clearInputArea();
 
@@ -70,6 +63,77 @@ window.addEventListener("click", (e) => {
     }
 })
 
+class BookCard {
+
+    constructor() {
+        // create card elements
+        this.bookCard = document.createElement("div");
+        this.bookTitle = document.createElement("p");
+        this.bookAuthor = document.createElement("p");
+        this.bookPages = document.createElement("p");
+        this.bookCardBtn = document.createElement("div");
+        this.isReadBtn = document.createElement("button");
+        this.deleteBtn = document.createElement("button");
+    }
+
+    createBookCard() {
+        this.bookCard.classList.add("book-card");
+        bookContainer.appendChild(this.bookCard);
+    }
+
+    createBookInfo() {
+
+        // book title
+        this.bookTitle.classList.add("book-card-text", "book");
+        this.bookTitle.innerHTML =
+            `' ${document.querySelector("#title").value} '`;
+
+        // author
+        this.bookAuthor.classList.add("book-card-text", "author");
+        this.bookAuthor.innerHTML =
+            `by ${document.querySelector("#author").value}`;
+
+        // page number
+        this.bookPages.classList.add("book-card-text", "pages");
+        this.bookPages.innerHTML =
+            `${document.querySelector("#pages").value} pages`;
+
+
+        this.bookCard.appendChild(this.bookTitle);
+        this.bookCard.appendChild(this.bookAuthor);
+        this.bookCard.appendChild(this.bookPages);
+
+    }
+
+    createBookCardBtns() {
+
+        // button container
+        this.bookCardBtn.classList.add("book-card-btn-group");
+
+        // isRead button
+        this.isReadBtn.classList.add("book-card-btn", "btn-isRead");
+
+        // control whether the book is read
+        if (document.querySelector("#isRead").checked) {
+            this.isReadBtn.innerHTML = "Read";
+            this.isReadBtn.style.backgroundColor = "rgb(0,128,0)";
+        } else {
+            this.isReadBtn.innerHTML = "Not read";
+            this.isReadBtn.style.backgroundColor = "rgb(158,13,13)";
+        }
+
+        // delete button
+        this.deleteBtn.classList.add("book-card-btn", "btn-delete");
+
+        this.deleteBtn.innerHTML = "Delete";
+
+        this.bookCard.appendChild(this.bookCardBtn);
+        this.bookCardBtn.appendChild(this.isReadBtn);
+        this.bookCardBtn.appendChild(this.deleteBtn);
+
+    }
+}
+
 // functions
 function openModal() {
     modal.style.display = "block";
@@ -85,65 +149,6 @@ function closeModal() {
     document.querySelector("footer").style.filter = "blur(0px)";
 }
 
-function createBookCard(bookCard) {
-
-    bookCard.classList.add("book-card");
-    bookContainer.appendChild(bookCard);
-
-}
-
-function createBookInfo(bookCard, bookTitle, bookAuthor, bookPages) {
-
-    // book title
-    bookTitle.classList.add("book-card-text", "book");
-    bookTitle.innerHTML =
-        `' ${document.querySelector("#title").value} '`;
-
-    // author
-    bookAuthor.classList.add("book-card-text", "author");
-    bookAuthor.innerHTML =
-        `by ${document.querySelector("#author").value}`;
-
-    // page number
-    bookPages.classList.add("book-card-text", "pages");
-    bookPages.innerHTML =
-        `${document.querySelector("#pages").value} pages`;
-
-
-    bookCard.appendChild(bookTitle);
-    bookCard.appendChild(bookAuthor);
-    bookCard.appendChild(bookPages);
-
-}
-
-function createBookCardBtns(bookCard,bookCardBtn,isReadBtn,deleteBtn) {
-
-    // button container
-    bookCardBtn.classList.add("book-card-btn-group");
-
-    // isRead button
-    isReadBtn.classList.add("book-card-btn", "btn-isRead");
-
-    // control whether the book is read
-    if (document.querySelector("#isRead").checked) {
-        isReadBtn.innerHTML = "Read";
-        isReadBtn.style.backgroundColor = "rgb(0,128,0)";
-    } else {
-        isReadBtn.innerHTML = "Not read";
-        isReadBtn.style.backgroundColor = "rgb(158,13,13)";
-    }
-
-    // delete button
-    deleteBtn.classList.add("book-card-btn", "btn-delete");
-
-    deleteBtn.innerHTML = "Delete";
-
-    bookCard.appendChild(bookCardBtn);
-    bookCardBtn.appendChild(isReadBtn);
-    bookCardBtn.appendChild(deleteBtn);
-
-}
-
 function clearInputArea() {
 
     document.querySelector("#title").value = "";
@@ -154,13 +159,13 @@ function clearInputArea() {
 }
 
 function deleteBookCard(index) {
-        
+
     // remove from array
-    myLibrary.splice(index,1);
+    myLibrary.splice(index, 1);
 
     // remove from DOM
     bookContainer.removeChild(bookContainer.children[index]);
-     
+
 }
 
 function changeReadCondition(index, e) {
@@ -182,17 +187,17 @@ function changeReadCondition(index, e) {
         e.target.style.backgroundColor = "rgb(0, 128, 0)";
         e.target.innerHTML = "Read"
     }
-    
+
 }
 
 // constructor function
 function Book(title, author, pages, isRead) {
-    
+
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
-    
+
 }
 
 function addBookToLibrary() {
