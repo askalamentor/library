@@ -21,7 +21,8 @@ submitBtn.addEventListener("click", () => {
     bookCard.createBookCardBtns();
 
     closeModal();
-    addBookToLibrary();
+    let book = new Book();
+    book.addBookToLibrary();
     clearInputArea();
 
 });
@@ -134,6 +135,20 @@ class BookCard {
     }
 }
 
+class Book {
+
+    constructor() {
+        this.title = document.querySelector("#title").value;
+        this.author = document.querySelector("#author").value;
+        this.pages = document.querySelector("#pages").value;
+        this.isRead = document.querySelector("#isRead").checked;
+    }
+
+    addBookToLibrary() {
+        myLibrary.push(this);
+    }
+}
+
 // functions
 function openModal() {
     modal.style.display = "block";
@@ -190,26 +205,6 @@ function changeReadCondition(index, e) {
 
 }
 
-// constructor function
-function Book(title, author, pages, isRead) {
 
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
 
-}
 
-function addBookToLibrary() {
-
-    const book = new Book(
-        document.querySelector("#title").value,
-        document.querySelector("#author").value,
-        document.querySelector("#pages").value,
-        document.querySelector("#isRead").checked
-    );
-
-    myLibrary.push(book);
-
-    console.log(myLibrary);
-}
