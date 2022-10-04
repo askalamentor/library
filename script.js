@@ -8,62 +8,7 @@ const submitBtn = document.querySelector("#btn-submit");
 // library array
 let myLibrary = [];
 
-// get book info
-openModalBtn.addEventListener("click", openModal);
-closeModalBtn.addEventListener("click", closeModal);
-
-// create book card
-submitBtn.addEventListener("click", () => {
-
-    let bookCard = new BookCard();
-    bookCard.createBookCard();
-    bookCard.createBookInfo();
-    bookCard.createBookCardBtns();
-
-    closeModal();
-    let book = new Book();
-    book.addBookToLibrary();
-    clearInputArea();
-
-});
-
-// delete book card
-window.addEventListener("click", (e) => {
-
-    // find delete button's card index.
-    if (e.target.className.includes("btn-delete")) {
-
-        // child is book card
-        const child = e.target.parentElement.parentElement;
-        // parent is book container
-        const parent = child.parentElement;
-
-        let index = Array.prototype.indexOf.call(parent.children, child);
-
-        deleteBookCard(index);
-        console.log(myLibrary);
-    }
-
-})
-
-// change book card read condition
-window.addEventListener("click", (e) => {
-
-    // find read button's card index
-    if (e.target.className.includes("btn-isRead")) {
-
-        // child is book card
-        const child = e.target.parentElement.parentElement;
-        // parent is book container
-        const parent = child.parentElement;
-
-        let index = Array.prototype.indexOf.call(parent.children, child);
-
-        changeReadCondition(index, e);
-        console.log(myLibrary);
-    }
-})
-
+// classes
 class BookCard {
 
     constructor() {
@@ -148,6 +93,63 @@ class Book {
         myLibrary.push(this);
     }
 }
+
+// get book info
+openModalBtn.addEventListener("click", openModal);
+closeModalBtn.addEventListener("click", closeModal);
+
+// create book card
+submitBtn.addEventListener("click", () => {
+
+    let bookCard = new BookCard();
+    bookCard.createBookCard();
+    bookCard.createBookInfo();
+    bookCard.createBookCardBtns();
+
+    closeModal();
+    let book = new Book();
+    book.addBookToLibrary();
+    clearInputArea();
+
+});
+
+// delete book card
+window.addEventListener("click", (e) => {
+
+    // find delete button's card index.
+    if (e.target.className.includes("btn-delete")) {
+
+        // child is book card
+        const child = e.target.parentElement.parentElement;
+        // parent is book container
+        const parent = child.parentElement;
+
+        let index = Array.prototype.indexOf.call(parent.children, child);
+
+        deleteBookCard(index);
+        console.log(myLibrary);
+    }
+
+})
+
+// change book card read condition
+window.addEventListener("click", (e) => {
+
+    // find read button's card index
+    if (e.target.className.includes("btn-isRead")) {
+
+        // child is book card
+        const child = e.target.parentElement.parentElement;
+        // parent is book container
+        const parent = child.parentElement;
+
+        let index = Array.prototype.indexOf.call(parent.children, child);
+
+        changeReadCondition(index, e);
+        console.log(myLibrary);
+    }
+})
+
 
 // functions
 function openModal() {
